@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>Agência Tozzo</title>
+  <link rel="stylesheet" href="styles.css?v=1.1">
+  <link rel="icon" href="agenciaTozzo.png">
+  <link href="https://fonts.googleapis.com/css?family=Inter:400,600,700&display=swap" rel="stylesheet">
+  <script defer src="scripts.js"></script>
+</head>
+
+<body>
+  <!-- Navbar -->
+  <header class="navbar">
+    <div class="container nav-container">
+      <a href="/" class="brand" aria-label="Agência Tozzo - página inicial">
+        <img src="assets/logo.png" alt="Logo da Agência Tozzo" class="brand-logo">
+        <span class="brand-text">Agência Tozzo</span>
+      </a>
+      <nav>
+        <ul class="nav-links" id="nav-links">
+          <li class="nav-item-destaque">
+            <a href="#curso">Cursos</a>
+            <div class="cursor-guide" aria-hidden="true">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M5.65376 12.3673H5.46026L5.31717 12.4976L0.500002 16.8829L0.500002 1.19177L11.7841 12.3673H5.65376Z"
+                  fill="white" stroke="black" stroke-width="1" />
+              </svg>
+            </div>
+          </li>
+          <li><a href="#projetos">Projetos</a></li>
+          <li><a href="#quem-somos">Quem Somos</a></li>
+          <li><a href="#faq">FAQ</a></li>
+          <li><a href="#contato">Contato</a></li>
+          <li class="theme-item">
+            <button id="theme-toggle" class="theme-toggle" aria-label="Alternar tema" title="Alternar tema"
+              aria-pressed="false">
+              <!-- Sun icon -->
+              <svg class="icon icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none"
+                xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <circle cx="12" cy="12" r="4" fill="currentColor" />
+                <g stroke="currentColor" stroke-width="1.2" stroke-linecap="round">
+                  <path d="M12 2v2" />
+                  <path d="M12 20v2" />
+                  <path d="M4.93 4.93l1.414 1.414" />
+                  <path d="M17.657 17.657l1.414 1.414" />
+                  <path d="M2 12h2" />
+                  <path d="M20 12h2" />
+                  <path d="M4.93 19.07l1.414-1.414" />
+                  <path d="M17.657 6.343l1.414-1.414" />
+                </g>
+              </svg>
+              <!-- Moon icon -->
+              <svg class="icon icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none"
+                xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z" fill="currentColor" />
+              </svg>
+            </button>
+          </li>
+        </ul>
+        <button class="menu-toggle" id="menu-toggle" aria-label="Abrir menu">&#9776;</button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-logo">
+        <img src="assets/logo.png" alt="Logo Console do cangaço" class="hero-logo-img">
+      </div>
+      <h1>Bem-vindo, somos a agência tozzo</h1>
+      <p>Curso de maior qualidade
+        <br> o diferencial é a rapidez
+        <br>+1000 clientes satisfeitos
+      </p>
+      <a href="#projetos" class="btn-primary">Conheça nossos projetos</a>
+    </div>
+  </section>
+
+  <!-- Curso Destaque -->
+  <section id="curso" class="curso-section">
+    <div class="container">
+      <h2>Conheça nossos cursos</h2>
+      <div class="curso-wrapper">
+        <div class="curso-image-wrapper anim-fade-in">
+          <img src="assets/cursoDestaque.png" alt="Curso de Arte Gospel" class="curso-image">
+        </div>
+        <div class="curso-content anim-fade-in">
+          <h3>Domine a Arte Gospel</h3>
+          <div class="curso-highlights">
+            <span class="highlight-vitalicio">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"
+                  fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                  stroke-linejoin="round" />
+              </svg>
+              Acesso Vitalício
+            </span>
+          </div>
+          <p class="curso-description">
+            Neste curso, você aprenderá o passo a passo de como criar uma arte de impacto gospel, combinando
+            criatividade, técnica e propósito para transmitir mensagens inspiradoras e transformadoras. 🚀🎨✨
+          </p>
+          <a href="https://pay.kiwify.com.br/c4BgNlg" target="_blank" class="btn-primary btn-lg">Acessar Curso Agora</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- O que você vai aprender -->
+  <section id="aprendizado">
+    <div class="container">
+      <h2 style="text-align: center; margin-bottom: 2rem;">O que você vai aprender na prática 👇</h2>
+      <div class="aprendizado-grid">
+        <!-- Card 1 -->
+        <div class="card aprendizado-card anim-fade-in">
+          <div class="icon-box">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="2" y="2" width="20" height="20" rx="6" stroke="currentColor" stroke-width="2" />
+              <path d="M7 12L10 15L17 8" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                stroke-linejoin="round" />
+            </svg>
+          </div>
+          <h3>Criar cartazes impactantes do absoluto zero</h3>
+          <p>Com este curso, você aprenderá a criar cartazes impactantes do absoluto zero, passo a passo.</p>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="card aprendizado-card anim-fade-in">
+          <div class="icon-box">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="2" y="2" width="20" height="20" rx="6" stroke="currentColor" stroke-width="2" />
+              <path d="M7 12L10 15L17 8" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                stroke-linejoin="round" />
+            </svg>
+          </div>
+          <h3>Onde buscar imagens, elementos e fontes</h3>
+          <p>Além de aprender a criar as artes, eu vou te ensinar os principais sites e ferramentas para buscar
+            imagens, elementos e fontes para o seu projeto.</p>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="card aprendizado-card anim-fade-in">
+          <div class="icon-box">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="2" y="2" width="20" height="20" rx="6" stroke="currentColor" stroke-width="2" />
+              <path d="M7 12L10 15L17 8" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                stroke-linejoin="round" />
+            </svg>
+          </div>
+          <h3>Como melhor tratar fotos</h3>
+          <p>você aprenderá a melhorar as fotos que você já possui ou que você irá tirar, para deixar as artes mais
+            impactantes.</p>
+        </div>
+
+        <!-- Card 4 -->
+        <div class="card aprendizado-card anim-fade-in">
+          <div class="icon-box">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="2" y="2" width="20" height="20" rx="6" stroke="currentColor" stroke-width="2" />
+              <path d="M7 12L10 15L17 8" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                stroke-linejoin="round" />
+            </svg>
+          </div>
+          <h3>Apanhado de dicas no geral...</h3>
+          <p>Vou te revelar dicas que vão te ajudar a produzir arte de forma mais eficiente e lucrativa.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projetos -->
+  <section id="projetos" class="projetos-section">
+    <div class="container">
+      <h2>Cartazes em Destaque</h2>
+      <div class="projetos-grid">
+        <div class="card projeto-card anim-fade-in">
+          <img src="assets/projetos/cultoEvangelistico.png" alt="Culto evangelistico" class="card-image">
+          <div class="card-content">
+            <h3>Culto evangelistico</h3>
+            <p>Cartaz moderno para o culto evangelistico</p>
+          </div>
+        </div>
+        <div class="card projeto-card anim-fade-in">
+          <img src="assets/projetos/agendas2k26.png" alt="Agenda 2026" class="card-image">
+          <div class="card-content">
+            <h3>Modelo de agendas 2026</h3>
+            <p>Agenda de eventos para o ano de 2026</p>
+          </div>
+        </div>
+        <div class="card projeto-card anim-fade-in">
+          <img src="assets/projetos/cultoDaFamilia.png" alt="Culto da Familia" class="card-image">
+          <div class="card-content">
+            <h3>Modelo de culto da familia</h3>
+            <p>Cartaz moderno para o culto da familia</p>
+          </div>
+        </div>
+        <div class="card projeto-card anim-fade-in">
+          <img src="assets/projetos/janeiroProfetico.png" alt="Janeiro profetico" class="card-image">
+          <div class="card-content">
+            <h3>Modelo de janeiro profetico</h3>
+            <p>Cartaz moderno para o janeiro profetico</p>
+          </div>
+        </div>
+      </div>
+  </section>
+
+  <!-- Quem Somos -->
+  <section id="quem-somos" class="quemsomos-section">
+    <div class="container">
+      <h2>Quem Somos</h2>
+      <p>
+        Na Agência Tozzo, transformamos espaços em oportunidades. Somos especialistas na criação de cartazes que não
+        apenas informam, mas prendem o olhar e guiam o consumo. Com uma trajetória marcada pela entrega de mais de 1.000
+        projetos de sucesso, unimos a precisão técnica à criatividade estratégica.
+        <br>
+        Nosso compromisso é simples: dar voz visual ao seu negócio com agilidade, clareza e o impacto que o seu cliente
+        merece.
+      </p>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq" class="faq-section">
+    <div class="container">
+      <h2>Perguntas Frequentes</h2>
+      <div class="faq-list">
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">
+            <span>Quais tipos de serviços vocês oferecem?</span>
+            <svg class="faq-icon" width="20" height="20" viewBox="0 0 24 24" fill="none"
+              xmlns="http://www.w3.org/2000/svg">
+              <path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round" />
+            </svg>
+          </button>
+          <div class="faq-answer">
+            <p>Somos especialistas em design visual para eventos e igrejas. Criamos cartazes impactantes, identidades
+              visuais completas e materiais para redes sociais que comunicam a essência do seu projeto.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">
+            <span>Qual é o prazo de entrega?</span>
+            <svg class="faq-icon" width="20" height="20" viewBox="0 0 24 24" fill="none"
+              xmlns="http://www.w3.org/2000/svg">
+              <path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round" />
+            </svg>
+          </button>
+          <div class="faq-answer">
+            <p>A agilidade é nosso diferencial. Projetos pontuais, como cartazes, são entregues em tempos recordes,
+              muitas vezes no mesmo dia ou em até 24 horas, mantendo a alta qualidade.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">
+            <span>Como faço um orçamento?</span>
+            <svg class="faq-icon" width="20" height="20" viewBox="0 0 24 24" fill="none"
+              xmlns="http://www.w3.org/2000/svg">
+              <path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round" />
+            </svg>
+          </button>
+          <div class="faq-answer">
+            <p>É super simples! Basta clicar no botão "Fale Conosco" ou nos enviar uma mensagem direta pelo
+              WhatsApp/Instagram. Nossa equipe responderá prontamente para entender sua necessidade.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">
+            <span>Atendem clientes de fora da cidade?</span>
+            <svg class="faq-icon" width="20" height="20" viewBox="0 0 24 24" fill="none"
+              xmlns="http://www.w3.org/2000/svg">
+              <path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round" />
+            </svg>
+          </button>
+          <div class="faq-answer">
+            <p>Sim! O digital não tem fronteiras. Atendemos clientes de todo o Brasil e até do exterior, entregando
+              arquivos digitais em alta resolução prontos para uso.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contato -->
+  <section id="contato" class="contato-section">
+    <div class="container">
+      <h2>Fale Conosco</h2>
+      <form class="contato-form" id="contato-form" action="https://formsubmit.co/agenciatozzo@gmail.com" method="POST"
+        autocomplete="off">
+        <input type="hidden" name="_subject" value="Novo contato via Site Agência Tozzo!">
+        <input type="hidden" name="_template" value="table">
+        <input type="hidden" name="_captcha" value="false">
+
+        <input type="text" name="nome" placeholder="Seu Nome" required>
+        <input type="email" name="email" placeholder="Seu Email" required>
+        <textarea name="mensagem" placeholder="Sua mensagem" rows="4" required></textarea>
+
+        <p id="form-status" style="display:none; margin-bottom: 1em; font-weight: bold;"></p>
+        <button type="submit" class="btn-primary">Enviar</button>
+      </form>
+      <div class="contato-redes">
+        <a href="https://wa.me/message/IDPBNMNJRHDPJ1" aria-label="WhatsApp"><img src="assets/contato/logoWhatsApp.png" alt="Logo do WhatsApp"></a>
+        <a href="https://www.instagram.com/agenciatozzo/" aria-label="Instagram"><img
+            src="assets/contato/logoInstagram.png" alt="Logo do Instagram"></a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>&copy; 2025 Agência Tozzo. Todos os direitos reservados.</p>
+    </div>
+  </footer>
+</body>
+
+</html>
