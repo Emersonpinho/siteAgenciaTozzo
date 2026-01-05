@@ -238,15 +238,16 @@ html[data-theme="dark"] .theme-toggle .icon-moon {
 }
 
 /* Smooth color/background transitions when theme changes */
-* {
-  transition: background-color 260ms ease, color 260ms ease;
+html[data-theme],
+html[data-theme] * {
+  transition: background-color 260ms ease, color 260ms ease !important;
 }
 
 header,
 .card,
 .site-footer,
 .hero {
-  transition: background-color 260ms ease, box-shadow 260ms ease;
+  transition: background-color 260ms ease, box-shadow 260ms ease !important;
 }
 
 @media (max-width: 700px) {
