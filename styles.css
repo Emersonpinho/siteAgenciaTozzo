@@ -511,36 +511,7 @@ section {
   background-clip: text;
 }
 
-/* Badge Novidade */
-.badge-novidade {
-  position: absolute;
-  top: -20px;
-  right: 20px;
-  background: var(--accent);
-  color: #1a1a1a;
-  padding: 0.5em 1.25em;
-  font-weight: 800;
-  border-radius: 99px;
-  font-size: 0.85rem;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  z-index: 10;
-  box-shadow: 0 4px 12px rgba(255, 177, 17, 0.4);
-  transform: rotate(4deg);
-  animation: badgeFloat 3s ease-in-out infinite;
-}
 
-@keyframes badgeFloat {
-
-  0%,
-  100% {
-    transform: translateY(0) rotate(4deg);
-  }
-
-  50% {
-    transform: translateY(-3px) rotate(4deg);
-  }
-}
 
 /* Highlights */
 .curso-highlights {
@@ -578,17 +549,7 @@ section {
   transform: translateY(-3px);
 }
 
-.payment-methods {
-  margin-top: 1.5em;
-  opacity: 0.9;
-}
 
-.payment-img {
-  max-width: 300px;
-  width: 100%;
-  height: auto;
-  display: block;
-}
 
 @media (max-width: 900px) {
   .curso-wrapper {
@@ -703,13 +664,7 @@ html[data-theme="dark"] .aprendizado-card {
 }
 
 /* Grids para Equipe e Blog (Projetos tem grid própria agora) */
-.equipe-grid,
-.blog-grid {
-  display: flex;
-  gap: 2em;
-  flex-wrap: wrap;
-  justify-content: center;
-}
+
 
 /* Projetos Carousel Grid */
 .projetos-grid {
@@ -732,16 +687,7 @@ html[data-theme="dark"] .aprendizado-card {
   display: none;
 }
 
-/* Styles Específicos para Cards de Blog (manter comportamento original) */
-.blog-card {
-  flex: 1 1 300px;
-  min-width: 280px;
-  max-width: 380px;
-  display: flex;
-  flex-direction: column;
-  padding: 0;
-  overflow: hidden;
-}
+
 
 /* Styles para Cards do Carrossel de Projetos */
 .projeto-card {
@@ -813,30 +759,9 @@ html[data-theme="dark"] .projeto-card {
   margin-top: 0;
 }
 
-.equipe-grid {
-  flex-wrap: wrap;
-  gap: 1.5em;
-}
 
-.equipe-card {
-  align-items: center;
-  justify-content: center;
-  display: flex;
-  flex-direction: column;
-  max-width: 17em;
-  min-width: 200px;
-}
 
-.equipe-foto {
-  border-radius: 50%;
-  width: 92px;
-  height: 92px;
-  object-fit: cover;
-  margin-bottom: 1em;
-}
 
-/* Eventos */
-/* eventos-lista removed (not present in current markup). Reintroduce if events list is added. */
 
 /* FAQ */
 /* FAQ */
@@ -1043,13 +968,6 @@ html[data-theme="dark"] .contato-form {
 @media (max-width: 900px) {
   .nav-links {
     gap: 0.6em;
-  }
-
-  /* Projetos grid não deve virar coluna, mantém carrossel */
-  .equipe-grid,
-  .blog-grid {
-    flex-direction: column;
-    align-items: center;
   }
 }
 

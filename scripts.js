@@ -44,7 +44,7 @@ const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').mat
 if (!prefersReduced) {
   const fadeEls = document.querySelectorAll('.anim-fade-in');
   // assign delays per group (so cards in a grid stagger)
-  const groups = ['.projeto-card', '.equipe-card', '.blog-card'];
+  const groups = ['.projeto-card'];
   groups.forEach(selector => {
     const els = Array.from(document.querySelectorAll(selector));
     els.forEach((el, i) => el.dataset.delay = (i * 0.12).toFixed(2));
