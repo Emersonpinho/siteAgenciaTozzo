@@ -874,6 +874,7 @@ html[data-theme="dark"] .faq-question:hover {
   margin: 0 auto;
   padding: 2em;
   background: var(--card-bg);
+  color: var(--text);
   border-radius: 20px;
   box-shadow: var(--shadow);
   border: 1px solid rgba(0, 0, 0, 0.05);
@@ -891,6 +892,14 @@ html[data-theme="dark"] .faq-question:hover {
   transition: all 0.2s ease;
   width: 100%;
   box-sizing: border-box;
+  color: inherit;
+  caret-color: currentColor;
+}
+
+.contato-form input::placeholder,
+.contato-form textarea::placeholder {
+  color: var(--muted);
+  opacity: 0.9;
 }
 
 .contato-form input:focus,
