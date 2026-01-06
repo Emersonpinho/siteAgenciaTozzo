@@ -1,0 +1,999 @@
+:root {
+  --primary: #d89755;
+  --primary-dark: #e8cf96;
+  --secondary: #f7f8fa;
+  --background: #f4f7fb;
+  /* removed unused decorative vars (kept page accents as explicit gradients) */
+  --accent: #ffb111;
+  --text: #2d2f35;
+  --white: #fff;
+  --radius: 1.2rem;
+  --duration: 0.4s;
+  /* much stronger shadow for the light theme to give clear depth */
+  /* increased blur and alpha so cards pop off the white background */
+  --shadow: 0 10px 40px rgba(16, 24, 32, 0.12);
+  /* larger elevated shadow for hover / focused states */
+  --shadow-lg: 0 24px 80px rgba(16, 24, 32, 0.16);
+  /* subtle thin outline for very close elements if needed */
+  --shadow-sm: 0 4px 12px rgba(16, 24, 32, 0.06);
+
+  /* layout-specific colors (use these so dark theme can override cleanly) */
+  --nav-bg: var(--white);
+  --card-bg: var(--white);
+  --footer-bg: var(--primary);
+  --muted: #4d5761;
+  --toggle-bg: rgba(0, 0, 0, 0.03);
+  --toggle-border: rgba(0, 0, 0, 0.06);
+  --footer-text: var(--white);
+  /* FAQ expanded background / color (theme-aware) */
+  --faq-expanded-bg: var(--secondary);
+  --faq-expanded-color: var(--muted);
+}
+
+/* Theme overrides: dark mode via [data-theme="dark"] on <html> */
+html[data-theme="dark"] {
+  --background: #06080a;
+  --white: #0b0f14;
+  /* still used as background variable in some places */
+  --text: #e6eef6;
+  --primary: #ffc36b;
+  --primary-dark: #ffdfb3;
+  --accent: #ffb111;
+
+  /* dark theme layout overrides */
+  --nav-bg: #0b0f14;
+  --card-bg: #0f1418;
+  --footer-bg: #071018;
+  --muted: #b7c2cc;
+  --toggle-bg: rgba(255, 255, 255, 0.03);
+  --toggle-border: rgba(255, 255, 255, 0.06);
+  --shadow: 0 6px 24px rgba(0, 0, 0, 0.6);
+  --footer-text: var(--text);
+  /* FAQ expanded in dark */
+  --faq-expanded-bg: rgba(255, 255, 255, 0.03);
+  --faq-expanded-color: var(--text);
+}
+
+/* FAQ expanded overrides for dark theme merged into the main dark-theme block below */
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: 'Inter', Arial, sans-serif;
+  color: var(--text);
+  line-height: 1.6;
+  /* white base with very discrete corner accents to keep layout clean */
+  background-color: var(--white);
+  background-image:
+    radial-gradient(240px 180px at 6% 10%, rgba(216, 151, 85, 0.03) 0%, transparent 45%),
+    radial-gradient(220px 160px at 94% 92%, rgba(255, 177, 17, 0.02) 0%, transparent 46%),
+    repeating-linear-gradient(45deg, rgba(0, 0, 0, 0.005) 0 1px, transparent 1px 14px);
+  background-attachment: fixed, fixed, scroll;
+  background-size: auto, auto, 14px 14px;
+}
+
+/* Decorative moving blobs behind content (subtle) */
+/* Decorative stylized blobs (shapes with soft edges and subtle blend) */
+/* very small decorative accents (discrete) */
+body::before {
+  content: '';
+  position: fixed;
+  left: 2%;
+  top: 2%;
+  width: 220px;
+  height: 180px;
+  background: radial-gradient(circle at 30% 30%, rgba(216, 151, 85, 0.04) 0%, transparent 55%);
+  filter: blur(28px);
+  z-index: -1;
+  pointer-events: none;
+  opacity: 0.7;
+}
+
+body::after {
+  content: '';
+  position: fixed;
+  right: 3%;
+  bottom: 3%;
+  width: 200px;
+  height: 160px;
+  background: radial-gradient(circle at 70% 70%, rgba(255, 177, 17, 0.03) 0%, transparent 55%);
+  filter: blur(26px);
+  z-index: -1;
+  pointer-events: none;
+  opacity: 0.7;
+}
+
+/* no long-running animations for discrete accents */
+
+/* ensure page content sits above decorative blobs */
+.navbar,
+.hero,
+section,
+.site-footer {
+  position: relative;
+  z-index: 1;
+}
+
+/* Respect reduced motion: stop animations */
+@media (prefers-reduced-motion: reduce) {
+
+  body::before,
+  body::after {
+    animation: none;
+  }
+}
+
+/* Navbar */
+.navbar {
+  background: var(--nav-bg);
+  box-shadow: var(--shadow);
+  position: sticky;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 99;
+}
+
+.nav-container {
+  max-width: 1120px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.6em 2em;
+}
+
+/* Brand (logo + text) */
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7rem;
+  text-decoration: none;
+}
+
+.brand-logo {
+  width: 44px;
+  height: 44px;
+  display: block;
+  border-radius: 12px;
+}
+
+.brand-text {
+  font-weight: 700;
+  font-size: 1.15rem;
+  color: var(--primary);
+  letter-spacing: -1px;
+}
+
+/* Make brand-text adapt in dark mode (so it's readable) */
+html[data-theme="dark"] .brand-text {
+  color: var(--text);
+}
+
+/* Theme toggle button in navbar */
+.theme-toggle {
+  /* stronger visual for the theme button: slightly larger, clearer border and subtle elevation */
+  background: var(--toggle-bg);
+  border: 1px solid var(--toggle-border);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 40px;
+  margin-left: 0.5rem;
+  color: var(--primary);
+  cursor: pointer;
+  border-radius: 999px;
+  padding: 6px;
+  /* use subtle theme-aware shadow so the button reads on white background */
+  box-shadow: var(--shadow-sm);
+  transition: transform 160ms ease, box-shadow 160ms ease, background-color 160ms ease;
+}
+
+.theme-toggle:focus {
+  box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.06);
+  outline: none;
+}
+
+.theme-toggle .icon {
+  display: block;
+  width: 20px;
+  height: 20px;
+}
+
+.theme-toggle .icon-sun circle {
+  fill: currentColor;
+}
+
+.theme-toggle .icon-sun g path {
+  stroke: currentColor;
+  stroke-width: 1.4;
+  opacity: 0.98;
+}
+
+.theme-toggle .icon-moon {
+  display: none;
+  transform: translateY(0);
+}
+
+.theme-toggle:hover {
+  transform: translateY(-2px) scale(1.03);
+  box-shadow: var(--shadow-lg);
+}
+
+/* when dark, show moon icon and adjust color */
+html[data-theme="dark"] .theme-toggle {
+  color: var(--primary);
+}
+
+html[data-theme="dark"] .theme-toggle .icon-sun {
+  display: none;
+}
+
+html[data-theme="dark"] .theme-toggle .icon-moon {
+  display: block;
+}
+
+/* Smooth color/background transitions when theme changes */
+html[data-theme],
+html[data-theme] * {
+  transition: background-color 260ms ease, color 260ms ease !important;
+}
+
+header,
+.card,
+.site-footer,
+.hero {
+  transition: background-color 260ms ease, box-shadow 260ms ease !important;
+}
+
+@media (max-width: 700px) {
+  .brand-text {
+    display: none;
+  }
+}
+
+.nav-links {
+  display: flex;
+  gap: 1.2em;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-links .theme-item {
+  display: flex;
+  align-items: center;
+}
+
+.nav-links .theme-item .theme-toggle {
+  margin-left: 0;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: var(--text);
+  padding: 0.5em 1em;
+  border-radius: 0.5em;
+  transition: background var(--duration);
+  font-weight: 500;
+}
+
+.nav-links a:hover,
+.nav-links a:focus {
+  background: var(--primary);
+  color: var(--white);
+}
+
+/* Destaque "Cursos" na Navbar */
+.nav-item-destaque {
+  position: relative;
+}
+
+.nav-item-destaque a {
+  background: rgba(216, 151, 85, 0.1);
+  color: var(--primary) !important;
+  border: 1px solid rgba(216, 151, 85, 0.3);
+  font-weight: 700;
+  transition: all 0.3s ease;
+}
+
+.nav-item-destaque a:hover {
+  background: var(--accent) !important;
+  color: #fff !important;
+  border-color: var(--accent);
+  box-shadow: 0 4px 12px rgba(255, 177, 17, 0.3);
+}
+
+/* Cursor Guide Animation */
+.cursor-guide {
+  position: absolute;
+  bottom: -18px;
+  right: -12px;
+  pointer-events: none;
+  z-index: 100;
+  animation: cursorMove 2s ease-in-out infinite;
+  filter: drop-shadow(0 2px 5px rgba(0, 0, 0, 0.2));
+}
+
+@keyframes cursorMove {
+
+  0%,
+  100% {
+    transform: translate(0, 0);
+  }
+
+  50% {
+    transform: translate(-6px, -6px);
+    /* Point/Click motion */
+  }
+}
+
+html[data-theme="dark"] .cursor-guide path {
+  fill: #fff;
+  stroke: #000;
+}
+
+.menu-toggle {
+  font-size: 1.8em;
+  background: none;
+  border: none;
+  color: var(--text);
+  display: none;
+  margin-left: 1em;
+  cursor: pointer;
+}
+
+/* Hero */
+.hero {
+  /* keep hero background neutral so it matches page white */
+  background: transparent;
+  padding: 5em 0 5em 0;
+  /* Increased bottom padding for blend */
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  /* Ensure bg doesn't spill */
+}
+
+/* Background Image behind logo */
+.hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('assets/heroBg.jpg');
+  background-size: cover;
+  background-position: center 20%;
+  /* visual adjustment (banner style) */
+  background-repeat: no-repeat;
+  opacity: 0.25;
+  /* "Adequate opacity" - subtle */
+  z-index: 0;
+  /* Blend with background at the end */
+  -webkit-mask-image: linear-gradient(to bottom, black 0%, black 40%, transparent 100%);
+  mask-image: linear-gradient(to bottom, black 0%, black 40%, transparent 100%);
+  pointer-events: none;
+}
+
+.hero h1 {
+  font-size: 2.8em;
+  font-weight: 700;
+  letter-spacing: -2px;
+  position: relative;
+  /* Ensure text creates stacking context if needed */
+}
+
+.hero p {
+  font-size: 1.25em;
+  color: var(--muted);
+  margin: 1.2em 0 2em 0;
+}
+
+/* Hero logo (grande) */
+.hero-logo {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.hero-logo-img {
+  width: 140px;
+  height: auto;
+  display: inline-block;
+  animation: logo-bounce 4s ease-in-out infinite;
+  will-change: transform;
+  border-radius: 24px;
+}
+
+@keyframes logo-bounce {
+
+  0%,
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+
+  50% {
+    transform: translateY(-8px) rotate(-2deg);
+  }
+}
+
+/* Respect user preference for reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .hero-logo-img {
+    animation: none;
+  }
+}
+
+@media (max-width: 700px) {
+  .hero-logo-img {
+    width: 100px;
+  }
+}
+
+.btn-primary {
+  background: var(--primary);
+  color: var(--white);
+  border: none;
+  padding: 0.85em 1.6em;
+  font-size: 1em;
+  font-weight: bold;
+  border-radius: 0.7em;
+  cursor: pointer;
+  transition: background 0.2s;
+  box-shadow: var(--shadow);
+}
+
+.btn-primary:hover,
+.btn-primary:focus {
+  background: var(--primary-dark);
+}
+
+/* Section Styles */
+section {
+  padding: 3.5em 0;
+}
+
+/* Curso Section Premium Styles */
+.curso-section {
+  position: relative;
+  overflow: visible;
+}
+
+.curso-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 4em;
+  justify-content: space-between;
+  margin-top: 2em;
+  /* Spacing from the main title */
+}
+
+.curso-image-wrapper {
+  flex: 1;
+  max-width: 500px;
+  position: relative;
+}
+
+/* Premium Image Styling */
+.curso-image {
+  width: 100%;
+  height: auto;
+  border-radius: 24px;
+  box-shadow: 0 20px 60px rgba(216, 151, 85, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  position: relative;
+  z-index: 2;
+  /* Premium Glow Effect behind image */
+}
+
+.curso-image:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 30px 80px rgba(216, 151, 85, 0.4);
+}
+
+.curso-content {
+  flex: 1;
+}
+
+.curso-content h3 {
+  font-size: 2.5em;
+  font-weight: 800;
+  margin-bottom: 0.5em;
+  line-height: 1.1;
+  background: linear-gradient(135deg, var(--text) 0%, var(--primary) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+
+
+/* Highlights */
+.curso-highlights {
+  margin-bottom: 1.2em;
+}
+
+.highlight-vitalicio {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4em;
+  background: rgba(216, 151, 85, 0.1);
+  color: var(--primary);
+  padding: 0.5em 1em;
+  border-radius: 50px;
+  font-size: 0.9em;
+  font-weight: 600;
+  border: 1px solid rgba(216, 151, 85, 0.2);
+}
+
+.curso-description {
+  font-size: 1.25em;
+  color: var(--muted);
+  margin-bottom: 2em;
+  line-height: 1.7;
+}
+
+.btn-lg {
+  padding: 1em 2.5em;
+  font-size: 1.1em;
+  box-shadow: 0 10px 30px rgba(216, 151, 85, 0.4);
+}
+
+.btn-lg:hover {
+  box-shadow: 0 15px 40px rgba(216, 151, 85, 0.6), 0 0 0 2px rgba(255, 255, 255, 0.4) inset;
+  transform: translateY(-3px);
+}
+
+
+
+@media (max-width: 900px) {
+  .curso-wrapper {
+    flex-direction: column;
+    text-align: center;
+    gap: 2.5em;
+  }
+
+  .curso-content h3 {
+    font-size: 2em;
+  }
+}
+
+/* Aprendizado Section */
+.aprendizado-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5em;
+}
+
+@media (max-width: 1024px) {
+  .aprendizado-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .aprendizado-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.aprendizado-card {
+  background: var(--card-bg);
+  /* Uses theme card background */
+  padding: 2em;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  text-align: left;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  /* Subtle border for light mode */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+html[data-theme="dark"] .aprendizado-card {
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  /* White border for dark mode */
+}
+
+.aprendizado-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-lg);
+}
+
+.icon-box {
+  color: var(--primary);
+  /* Gold color */
+  margin-bottom: 1.25rem;
+}
+
+.aprendizado-card h3 {
+  font-size: 1.25rem;
+  margin: 0 0 1rem 0;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.aprendizado-card p {
+  font-size: 0.95rem;
+  color: var(--muted);
+  margin: 0;
+  line-height: 1.6;
+}
+
+
+
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 2em;
+}
+
+/* Cards and Grids */
+.card {
+  background: var(--card-bg);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 2em 1.2em;
+  margin: 0.9em 0;
+  transition: transform 0.25s;
+}
+
+.card:hover {
+  transform: translateY(-8px) scale(1.03);
+  box-shadow: var(--shadow-lg);
+}
+
+/* Ensure project/team/blog cards also carry the stronger shadow on light theme */
+.projeto-card,
+.blog-card,
+.equipe-card {
+  box-shadow: var(--shadow);
+  border-radius: var(--radius);
+  background: var(--card-bg);
+}
+
+/* Make FAQ items lift when opened */
+.faq-item.open {
+  box-shadow: var(--shadow-lg);
+}
+
+/* Grids para Equipe e Blog (Projetos tem grid própria agora) */
+
+
+/* Projetos Carousel Grid */
+.projetos-grid {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 0;
+  /* Gap handled by logic */
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  padding: 3em 2em 4em 2em;
+  /* Espaço extra para o hover não cortar */
+  scrollbar-width: none;
+  /* Hide scrollbar Firefox */
+  scroll-behavior: smooth;
+  align-items: center;
+  /* Gradient masks for cues (optional, simpler to keep clean for now) */
+}
+
+.projetos-grid::-webkit-scrollbar {
+  display: none;
+}
+
+
+
+/* Styles para Cards do Carrossel de Projetos */
+.projeto-card {
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  overflow: hidden;
+  position: relative;
+
+  /* Carousel & Overlap properties */
+  flex: 0 0 340px;
+  /* Largura fixa */
+  min-width: 340px;
+  margin-left: -60px;
+  /* O Overlap Mágico */
+
+  border-radius: 20px;
+  /* Um pouco mais arredondado */
+  background: var(--card-bg);
+  /* Sombra lateral para destacar a sobreposição */
+  box-shadow: -8px 0 25px rgba(0, 0, 0, 0.08), var(--shadow);
+
+  transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1),
+    margin 0.4s ease,
+    box-shadow 0.4s ease;
+  scroll-snap-align: center;
+  z-index: 1;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  /* Borda sutil para light mode */
+}
+
+/* O primeiro card não deve ter margem negativa */
+.projeto-card:first-child {
+  margin-left: 0;
+}
+
+/* Hover Effect: Traz para frente e destaca */
+.projeto-card:hover {
+  transform: translateY(-20px) scale(1.05) rotate(1deg);
+  z-index: 100;
+  /* Garante que fique acima de todos */
+  margin-right: 40px;
+  /* Empurra os vizinhos para dar espaço */
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.15), 0 0 0 2px var(--primary);
+  /* Glow sutil */
+}
+
+/* Dark mode adjustments for borders */
+html[data-theme="dark"] .projeto-card {
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.card-image {
+  width: 100%;
+  aspect-ratio: 4/5;
+  /* Proporção estilo Instagram */
+  object-fit: cover;
+  display: block;
+}
+
+.card-content {
+  padding: 1.5em;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.card-content h3 {
+  margin-top: 0;
+}
+
+
+
+
+
+/* FAQ */
+/* FAQ */
+.faq-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25em;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.faq-item {
+  background: var(--card-bg);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+  transition: box-shadow 0.3s ease, border-color 0.3s ease;
+  border: 1px solid transparent;
+}
+
+/* Subtle border in light mode for better definition */
+.faq-item:not(:hover):not(.open) {
+  border-color: rgba(0, 0, 0, 0.03);
+}
+
+.faq-question {
+  background: none;
+  border: none;
+  width: 100%;
+  text-align: left;
+  font-weight: 600;
+  font-size: 1.05em;
+  padding: 1.25em 1.5em;
+  cursor: pointer;
+  outline: none;
+  transition: background-color 0.25s, color 0.25s;
+  color: var(--text);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1em;
+}
+
+.faq-question:hover {
+  background-color: var(--secondary);
+}
+
+.faq-question[aria-expanded="true"] {
+  background: var(--faq-expanded-bg);
+  color: var(--primary);
+}
+
+/* Icon rotation */
+.faq-icon {
+  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  color: var(--muted);
+  flex-shrink: 0;
+}
+
+.faq-question:hover .faq-icon {
+  color: var(--primary);
+}
+
+.faq-question[aria-expanded="true"] .faq-icon {
+  transform: rotate(180deg);
+  color: var(--primary);
+}
+
+.faq-answer {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height var(--duration) ease, padding-bottom var(--duration) ease;
+  padding: 0 1.5em;
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+.faq-item.open .faq-answer {
+  padding-bottom: 1.5em;
+  /* max-height handled by JS */
+}
+
+.faq-item.open {
+  box-shadow: var(--shadow-lg);
+  border-color: rgba(216, 151, 85, 0.3);
+  /* subtle primary highlight */
+}
+
+/* Dark mode clear border */
+html[data-theme="dark"] .faq-item {
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+html[data-theme="dark"] .faq-item.open {
+  border-color: rgba(255, 177, 17, 0.4);
+}
+
+html[data-theme="dark"] .faq-question:hover {
+  background-color: rgba(255, 255, 255, 0.02);
+}
+
+/* Contato */
+/* Contato */
+.contato-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 2em;
+  background: var(--card-bg);
+  border-radius: 20px;
+  box-shadow: var(--shadow);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  /* Subtle border for definition */
+}
+
+.contato-form input,
+.contato-form textarea {
+  border: 2px solid transparent;
+  background: var(--background);
+  border-radius: 12px;
+  padding: 1em 1.25em;
+  font-size: 1em;
+  resize: vertical;
+  transition: all 0.2s ease;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.contato-form input:focus,
+.contato-form textarea:focus {
+  outline: none;
+  background: var(--white);
+  border-color: var(--primary);
+  box-shadow: 0 4px 12px rgba(216, 151, 85, 0.15);
+  /* Soft glow */
+}
+
+.contato-form button {
+  align-self: flex-end;
+  margin-top: 0.5em;
+  /* Ensure spacing */
+}
+
+.contato-redes {
+  display: flex;
+  justify-content: center;
+  gap: 2em;
+  margin-top: 2em;
+}
+
+.contato-redes img {
+  width: 40px;
+  height: 40px;
+  transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+  display: block;
+}
+
+.contato-redes a:hover img {
+  transform: scale(1.15) rotate(5deg);
+}
+
+/* Dark mode clear border */
+html[data-theme="dark"] .contato-form {
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* Footer */
+.site-footer {
+  background: var(--footer-bg);
+  color: var(--footer-text);
+  text-align: center;
+  padding: 1.7em 0;
+  margin-top: 2em;
+  font-size: 1em;
+  letter-spacing: 0.4px;
+}
+
+/* Animations */
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(22px);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.anim-fade-in {
+  opacity: 0;
+  animation: fade-in-up 0.9s var(--duration) forwards;
+  /* keep paused until IntersectionObserver triggers it */
+  animation-play-state: paused;
+}
+
+.anim-fade-in.in-view {
+  animation-play-state: running;
+}
+
+@media (max-width: 900px) {
+  .nav-links {
+    gap: 0.6em;
+  }
+}
+
+@media (max-width: 700px) {
+  .navbar .nav-links {
+    position: absolute;
+    right: 0;
+    top: 64px;
+    flex-direction: column;
+    background: var(--nav-bg);
+    width: 70vw;
+    box-shadow: var(--shadow);
+    display: none;
+    padding: 1.5em;
+  }
+
+  .navbar .nav-links.open {
+    display: flex;
+  }
+
+  .nav-container {
+    padding: 0.6em 1em;
+  }
+
+  .menu-toggle {
+    display: block;
+  }
+}
