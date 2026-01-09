@@ -901,6 +901,170 @@
         display: block;
       }
     }
+
+    /* Seção de Compra de PSD */
+    .comprar-psd-section {
+      background: linear-gradient(135deg, rgba(216, 151, 85, 0.05) 0%, rgba(255, 177, 17, 0.03) 100%);
+      padding: 4em 0;
+    }
+
+    .psd-card {
+      max-width: 900px;
+      margin: 2em auto;
+      background: var(--card-bg);
+      border-radius: 24px;
+      box-shadow: var(--shadow-lg);
+      overflow: hidden;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      border: 1px solid rgba(216, 151, 85, 0.2);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .psd-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 30px 80px rgba(216, 151, 85, 0.3);
+    }
+
+    .psd-image-container {
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0;
+    }
+
+    .psd-video {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: 0;
+      opacity: 0.8;
+    }
+
+    .psd-image-container::before {
+      content: 'PSD';
+      position: absolute;
+      font-size: 8em;
+      font-weight: 900;
+      color: rgba(255, 255, 255, 0.1);
+      z-index: 0;
+    }
+
+    .psd-icon {
+      width: 120px;
+      height: 120px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .psd-content {
+      padding: 3em;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .psd-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5em;
+      background: rgba(216, 151, 85, 0.15);
+      color: var(--primary);
+      padding: 0.5em 1em;
+      border-radius: 50px;
+      font-size: 0.85em;
+      font-weight: 700;
+      width: fit-content;
+      margin-bottom: 1em;
+      border: 1px solid rgba(216, 151, 85, 0.3);
+    }
+
+    .psd-content h3 {
+      font-size: 2em;
+      font-weight: 800;
+      margin: 0 0 0.5em 0;
+      background: linear-gradient(135deg, var(--text) 0%, var(--primary) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .psd-price {
+      font-size: 2.5em;
+      font-weight: 900;
+      color: var(--primary);
+      margin: 0.5em 0;
+    }
+
+    .psd-features {
+      list-style: none;
+      padding: 0;
+      margin: 1.5em 0;
+    }
+
+    .psd-features li {
+      padding: 0.5em 0;
+      display: flex;
+      align-items: center;
+      gap: 0.7em;
+      color: var(--muted);
+      font-size: 0.95em;
+    }
+
+    .psd-features li svg {
+      color: var(--primary);
+      flex-shrink: 0;
+    }
+
+    .btn-comprar {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+      color: white;
+      border: none;
+      padding: 1em 2.5em;
+      font-size: 1.1em;
+      font-weight: 700;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 10px 30px rgba(216, 151, 85, 0.4);
+      margin-top: 1em;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .btn-comprar:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 15px 40px rgba(216, 151, 85, 0.6);
+    }
+
+    @media (max-width: 768px) {
+      .psd-card {
+        grid-template-columns: 1fr;
+      }
+
+      .psd-image-container {
+        padding: 2em;
+      }
+
+      .psd-content {
+        padding: 2em;
+      }
+
+      .psd-content h3 {
+        font-size: 1.5em;
+      }
+
+      .psd-price {
+        font-size: 2em;
+      }
+    }
   </style>
   <link rel="icon" href="agenciaTozzo.png">
   <link href="https://fonts.googleapis.com/css?family=Inter:400,600,700&display=swap" rel="stylesheet">
@@ -927,6 +1091,7 @@
             </div>
           </li>
           <li><a href="#projetos">Projetos</a></li>
+          <li><a href="#comprar-psd">Comprar PSD</a></li>
           <li><a href="#quem-somos">Quem Somos</a></li>
           <li><a href="#faq">FAQ</a></li>
           <li><a href="#contato">Contato</a></li>
@@ -1095,6 +1260,85 @@
           </div>
         </div>
       </div>
+  </section>
+
+  <section id="comprar-psd" class="comprar-psd-section">
+    <div class="container">
+      <h2 style="text-align: center;">Compre Nossos Arquivos PSD</h2>
+      <p style="text-align: center; color: var(--muted); max-width: 700px; margin: 0 auto 2em auto;">
+        Tenha acesso aos arquivos editáveis de nossos designs profissionais. Personalize e use em seus projetos!
+      </p>
+
+      <div class="psd-card anim-fade-in">
+        <div class="psd-image-container">
+          <video autoplay loop muted playsinline class="psd-video">
+            <source src="conteudo/vidioAnuncio.mp4" type="video/mp4">
+          </video>
+          <svg class="psd-icon" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect width="120" height="120" rx="20" fill="white" fill-opacity="0.2" />
+            <path
+              d="M30 40C30 35.5817 33.5817 32 38 32H82C86.4183 32 90 35.5817 90 40V80C90 84.4183 86.4183 88 82 88H38C33.5817 88 30 84.4183 30 80V40Z"
+              fill="white" />
+            <text x="60" y="70" font-family="Arial, sans-serif" font-size="28" font-weight="bold" fill="#d89755"
+              text-anchor="middle">PSD</text>
+          </svg>
+        </div>
+
+        <div class="psd-content">
+          <div class="psd-badge">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"
+                fill="currentColor" />
+            </svg>
+            Arquivo Premium
+          </div>
+
+          <h3>Pacote Completo de PSDs</h3>
+          <p class="psd-price">R$ 60,00 / mensal</p>
+
+          <ul class="psd-features">
+            <li>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                  stroke-linejoin="round" />
+              </svg>
+              Arquivos totalmente editáveis
+            </li>
+            <li>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                  stroke-linejoin="round" />
+              </svg>
+              Camadas organizadas
+            </li>
+            <li>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                  stroke-linejoin="round" />
+              </svg>
+              Alta resolução
+            </li>
+            <li>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                  stroke-linejoin="round" />
+              </svg>
+              Suporte incluso
+            </li>
+            <li>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                  stroke-linejoin="round" />
+              </svg>
+              Atualizações gratuitas
+            </li>
+          </ul>
+
+          <a href="https://wa.me/message/IDPBNMNJRHDPJ1?text=Olá!%20Quero%20comprar%20os%20PSDs%20da%20Agência%20Tozzo.%20Pode%20me%20passar%20mais%20informações?"
+            target="_blank" class="btn-comprar">Comprar Agora</a>
+        </div>
+      </div>
+    </div>
   </section>
 
   <section id="quem-somos" class="quemsomos-section">
